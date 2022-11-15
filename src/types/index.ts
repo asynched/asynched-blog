@@ -1,11 +1,7 @@
-export type Post = {
-  author: {
-    name: string
-    imageUrl: string
-  }
-  title: string
-  description: string
-  tags: string[]
-  postedAt: string
-  estimateReadingTime: number
+import type { User, Post } from '@prisma/client'
+
+export type { User, Post }
+
+export type PostUserAggregate = Post & {
+  author: User
 }

@@ -5,40 +5,50 @@ import {
   HomeIcon,
   LinkIcon,
 } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 export default function Navbar() {
   return (
     <nav
       className="
-        px-8
         fixed
+        bottom-0
+        z-50
         flex
-        items-center
-        justify-between
         h-16
         w-full
-        bottom-0
-        bg-white border-t
+        items-center
+        justify-between
+        border-t bg-white
+        px-8
 
         lg:sticky
         lg:top-0
-        lg:w-16
-        lg:flex-col
         lg:h-screen
-        lg:p-8
-        lg:border-r
+        lg:w-20
+        lg:flex-col
         lg:items-center
+        lg:border-r
+        lg:p-8
       "
     >
-      <CommandLineIcon className="w-8 h-8" />
-      <div className="flex lg:flex-col gap-4 my-auto lg:pb-4 lg:border-b">
-        <HomeIcon className="text-zinc-500 w-6 h-6" />
-        <BookmarkIcon className="text-zinc-500 w-6 h-6" />
-        <HeartIcon className="text-zinc-500 w-6 h-6" />
+      <Link href="/">
+        <CommandLineIcon className="h-8 w-8" />
+      </Link>
+      <div className="my-auto flex gap-4 lg:flex-col lg:border-b lg:pb-4">
+        <Link href="/">
+          <HomeIcon className="h-6 w-6 text-zinc-500" />
+        </Link>
+        <Link href="/bookmarks">
+          <BookmarkIcon className="h-6 w-6 text-zinc-500" />
+        </Link>
+        <Link href="/likes">
+          <HeartIcon className="h-6 w-6 text-zinc-500" />
+        </Link>
       </div>
-      <div>
-        <LinkIcon className="text-zinc-500 w-6 h-6" />
-      </div>
+      <a href="https://github.com/asynched" target="_blank">
+        <LinkIcon className="h-6 w-6 text-zinc-500" />
+      </a>
     </nav>
   )
 }
