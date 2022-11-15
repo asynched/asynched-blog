@@ -33,12 +33,13 @@ export default function EditPost({ post }: EditPostProps) {
   const [tags, setTags] = useState<string[]>(post.tags)
 
   const handleDelete = () => {
-    toast.promise(deletePost(post.id), {
-      pending: 'Apagando post...',
-      success: 'Post apagado',
-      error: 'Erro ao apagar post',
-    })
-    // .then(() => router.push('/'))
+    toast
+      .promise(deletePost(post.id), {
+        pending: 'Apagando post...',
+        success: 'Post apagado',
+        error: 'Erro ao apagar post',
+      })
+      .then(() => router.push('/'))
   }
 
   const handleUpdate = () => {
