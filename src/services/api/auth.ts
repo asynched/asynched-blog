@@ -8,7 +8,7 @@ type LoginToken = {
 }
 
 export const login = async (data: LoginDto): Promise<LoginToken> => {
-  const response = await fetch('/auth/login', {
+  const response = await fetch('/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
