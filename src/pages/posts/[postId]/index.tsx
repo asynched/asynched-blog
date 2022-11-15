@@ -4,6 +4,7 @@ import type { GetServerSideProps } from 'next'
 
 import { json } from '@/utils/serde'
 import { formatDate } from '@/utils/dates'
+import { safePromise } from '@/utils/promises'
 import { prismaClient } from '@/shared/prisma'
 import type { PostUserAggregate } from '@/types'
 import { useStorage } from '@/utils/local-storage'
@@ -134,10 +135,18 @@ export default function PostPage({ post, mostViewedPosts }: PostPageProps) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const id = ctx.params!.postId as string
 
-  const post = await prismaClient.post.findFirst({
-    where: { id },
-    include: { author: true },
-  })
+  const [post, error] = await safePromise(
+    prismaClient.post.findFirst({
+      where: { id },
+      include: { author: true },
+    })
+  )
+
+  if (error) {
+    return {
+      notFound: true,
+    }
+  }
 
   if (!post) {
     return {
