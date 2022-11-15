@@ -2,7 +2,7 @@ import { prismaClient } from '@/shared/prisma'
 import { chain, route, Middleware } from '@/middlewares'
 import { endpointRequiresAuth } from '@/middlewares/auth'
 import { validate } from '@/middlewares/validate'
-import { PostDto, postSchema } from '@/pages/schemas/posts'
+import { PostDto, postSchema } from '@/schemas/posts'
 
 const handleDeletePost: Middleware = async (req, res) => {
   const postId = req.query.postId as string

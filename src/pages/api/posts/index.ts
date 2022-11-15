@@ -2,7 +2,7 @@ import { chain, method } from '@/middlewares'
 import { prismaClient } from '@/shared/prisma'
 import { validate } from '@/middlewares/validate'
 import { endpointRequiresAuth } from '@/middlewares/auth'
-import { PostDto, postSchema } from '@/pages/schemas/posts'
+import { PostDto, postSchema } from '@/schemas/posts'
 
 const handler = chain(
   method('POST'),
